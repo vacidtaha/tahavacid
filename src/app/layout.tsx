@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tahavacid - Home",
+  title: "Tahavacid - R&D",
   description: "Tahavacid comprehensive web project",
 };
 
 // Navbar menü öğeleri
 const navItems = [
-  { name: "Home", url: "/", icon: "Home" },
+  { name: "R&D", url: "/", icon: "Home" },
   { name: "Contact", url: "/contact", icon: "Mail" },
 ];
 
