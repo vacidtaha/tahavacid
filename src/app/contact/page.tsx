@@ -3,9 +3,9 @@
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
 import I18nProvider from '@/components/I18nProvider';
 import FileUpload from '@/components/FileUpload';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 function ContactForm() {
   const { t, i18n } = useTranslation();
@@ -152,9 +152,11 @@ function ContactForm() {
 
   return (
     <div className="min-h-screen bg-white">
-      <LanguageSwitcher />
-      <div className="container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">
+          {/* Language Switcher */}
+          <LanguageSwitcher />
+          
           {/* Header */}
           <div className="mb-12">
             <h1 className="text-4xl font-bold text-black mb-6">
@@ -504,10 +506,6 @@ function ContactForm() {
                     {submitMessage}
                   </div>
                 )}
-                
-                <p className="text-xs text-gray-600 text-center mt-4">
-                  {t('submitNote')}
-                </p>
               </div>
             </form>
           </div>

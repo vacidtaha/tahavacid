@@ -63,8 +63,8 @@ export default function LanguageSwitcher() {
 
   if (!isLoaded) {
     return (
-      <div className="fixed top-4 right-4 z-50">
-        <div className="px-3 py-2 bg-gray-200 border border-gray-300 text-sm">
+      <div className="w-full">
+        <div className="px-3 py-2 bg-gray-200 border border-gray-300 text-sm text-center">
           Loading...
         </div>
       </div>
@@ -72,19 +72,24 @@ export default function LanguageSwitcher() {
   }
 
   return (
-    <div className="fixed top-4 right-4 z-50">
-      <div className="relative">
-        <select 
-          value={i18n.language} 
-          onChange={(e) => changeLanguage(e.target.value)}
-          className="px-3 py-2 border border-gray-300 bg-white text-black text-sm focus:outline-none focus:border-black"
-        >
-          {languages.map((lang) => (
-            <option key={lang.code} value={lang.code}>
-              {lang.flag} {lang.name}
-            </option>
-          ))}
-        </select>
+    <div className="w-full mb-6">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="text-sm text-gray-600">
+          🌍 Language Selection
+        </div>
+        <div className="relative">
+          <select 
+            value={i18n.language} 
+            onChange={(e) => changeLanguage(e.target.value)}
+            className="px-4 py-2 border border-gray-300 bg-white text-black text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 rounded-md min-w-48"
+          >
+            {languages.map((lang) => (
+              <option key={lang.code} value={lang.code}>
+                {lang.flag} {lang.name}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );
