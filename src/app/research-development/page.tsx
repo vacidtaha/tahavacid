@@ -15,7 +15,7 @@ export default function ResearchDevelopmentPage() {
         <div className="mx-auto px-4 sm:px-6 md:px-8 lg:px-0 lg:ml-[27%] lg:mr-[27%]">
           <div className="flex items-center h-12 sm:h-12 md:h-14">
             <h1 className="text-sm sm:text-base md:text-lg lg:text-xl text-white">
-              <span className="font-semibold">Taha Vacid</span>
+              <span className="font-semibold">Vacid</span>
               <span className="font-light"> Advanced Technology Institute</span>
             </h1>
           </div>
@@ -26,7 +26,7 @@ export default function ResearchDevelopmentPage() {
       {/* Hero Section */}
       <div className="bg-black h-[48rem] sm:h-[52rem] md:h-[56rem] lg:h-[60rem] xl:h-[64rem] w-full -mt-12 sm:-mt-12 md:-mt-14 relative">
         {/* Text Section - Upper Part */}
-        <div className="absolute top-0 left-0 right-0 pt-16 sm:pt-12 md:pt-16 lg:pt-20">
+        <div className="absolute top-0 left-0 right-0 pt-24 sm:pt-12 md:pt-16 lg:pt-20">
           <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-black sm:font-bold text-white text-center px-4 sm:px-0" 
               style={{ fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif' }}>
             Welcome to<br/>
@@ -60,10 +60,10 @@ export default function ResearchDevelopmentPage() {
               title="Brain and Spinal Cord Injury"
               description="Our revolutionary CRISPR-Cas9 gene editing solution enables complete brain and spinal cord regeneration. Advanced therapeutic vectors we developed demonstrate significant breakthroughs in neural tissue renewal. Our clinical trials show promising results for paralysis and brain injury recovery."
               date="March 2024"
-              theme="charcoal"
+              theme="light"
               exploreUrl="/neuronal-gene-therapy"
               rightElement={
-                <div className="text-6xl font-bold text-white opacity-20">
+                <div className="text-6xl font-bold text-gray-300 opacity-20">
                   SOLUTION
                 </div>
               }

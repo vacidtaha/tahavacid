@@ -60,12 +60,14 @@ export default function PublicationCard({
             {description}
           </p>
           <div className="flex flex-row items-center gap-2 sm:gap-3 md:gap-4">
-            <button className={`${themeClasses.button} px-3 py-1.5 sm:px-4 sm:py-2 md:py-2.5 rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-colors duration-200`}>
-              Read Paper
-            </button>
-            <Link href={exploreUrl || "#"} className={`${themeClasses.link} font-medium text-xs sm:text-sm md:text-base`}>
-              Learn More →
+            <Link href={exploreUrl || "#"}>
+              <button className={`${themeClasses.button} px-3 py-1.5 sm:px-4 sm:py-2 md:py-2.5 rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-colors duration-200`}>
+                Learn More
+              </button>
             </Link>
+            <span className={`${themeClasses.link} font-medium text-xs sm:text-sm md:text-base opacity-50 cursor-not-allowed`}>
+              Read Paper →
+            </span>
           </div>
         </div>
         {rightElement && (
