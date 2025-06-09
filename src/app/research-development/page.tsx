@@ -25,8 +25,18 @@ export default function ResearchDevelopmentPage() {
 
       {/* Hero Section */}
       <div className="bg-black h-[48rem] sm:h-[52rem] md:h-[56rem] lg:h-[60rem] xl:h-[64rem] w-full -mt-12 sm:-mt-12 md:-mt-14 relative">
-        {/* Image Section - Upper Part */}
-        <div className="absolute inset-0 flex items-center justify-center pt-0 pb-20 sm:pb-24 md:pb-32">
+        {/* Text Section - Upper Part */}
+        <div className="absolute top-0 left-0 right-0 pt-16 sm:pt-12 md:pt-16 lg:pt-20">
+          <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-black sm:font-bold text-white text-center px-4 sm:px-0" 
+              style={{ fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif' }}>
+            Welcome to<br/>
+            Research & Development<br/>
+            Department
+          </h1>
+        </div>
+        
+        {/* Image Section - Bottom Part */}
+        <div className="absolute inset-0 flex items-center justify-center pt-20 sm:pt-24 md:pt-32">
           <Image 
             src="/fil.png" 
             alt="Elephant" 
@@ -34,16 +44,6 @@ export default function ResearchDevelopmentPage() {
             height={1024}
             className="w-[32rem] h-[32rem] sm:w-[28rem] sm:h-[28rem] md:w-[36rem] md:h-[36rem] lg:w-[48rem] lg:h-[48rem] xl:w-[64rem] xl:h-[64rem] object-contain"
           />
-        </div>
-        
-        {/* Text Section - Bottom Part */}
-        <div className="absolute bottom-0 left-0 right-0 pb-8 sm:pb-12 md:pb-16 lg:pb-20">
-          <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-black sm:font-bold text-white text-center px-4 sm:px-0" 
-              style={{ fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif' }}>
-            Welcome to<br/>
-            Research & Development<br/>
-            Department
-          </h1>
         </div>
       </div>
       

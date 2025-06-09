@@ -14,12 +14,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="h-screen bg-white flex items-center justify-center overflow-hidden">
-      <div className="text-left -ml-32">
-        <div className="space-y-8">
-          <div className="space-y-6">
+    <div className="h-screen bg-white flex items-start sm:items-center justify-center overflow-hidden">
+      <div className="text-left px-4 sm:px-6 md:px-8 lg:-ml-32 max-w-4xl mx-auto pt-35 sm:pt-0">
+        <div className="space-y-6 sm:space-y-8">
+          <div className="space-y-4 sm:space-y-6">
             <p 
-              className="text-xl text-black font-normal leading-relaxed"
+              className="text-base sm:text-lg md:text-xl lg:text-xl text-black font-normal leading-relaxed"
               style={{ 
                 fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif',
                 lineHeight: '1.6',
@@ -33,7 +33,7 @@ export default function Home() {
             </p>
             
             <p 
-              className="text-xl text-black font-normal leading-relaxed"
+              className="text-base sm:text-lg md:text-xl lg:text-xl text-black font-normal leading-relaxed"
               style={{ 
                 fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif',
                 lineHeight: '1.6',
@@ -47,9 +47,9 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="pt-4">
+          <div className="pt-2 sm:pt-4">
             <p 
-              className="text-sm text-black"
+              className="text-xs sm:text-sm text-black"
               style={{ 
                 fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif',
                 fontWeight: '300'

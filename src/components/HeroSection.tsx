@@ -10,7 +10,7 @@ export default function HeroSection({
   overlay = true 
 }: HeroSectionProps) {
   return (
-    <div className="relative h-screen w-full -mt-12 sm:-mt-12 md:-mt-14">
+    <div className="relative h-[80vh] sm:h-[85vh] md:h-screen w-full -mt-12 sm:-mt-12 md:-mt-14">
       {/* Full Screen Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
