@@ -72,6 +72,7 @@ export function NavBar({ items, className }: NavBarProps) {
             <Link
               key={item.name}
               href={item.url}
+              prefetch={true}
               onClick={() => setActiveTab(item.name)}
               onMouseEnter={() => setHoveredTab(item.name)}
               onMouseLeave={() => setHoveredTab(null)}

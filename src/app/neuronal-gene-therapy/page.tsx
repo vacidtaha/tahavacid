@@ -19,7 +19,7 @@ export default function NeuronalGeneTherapyPage() {
               <span className="font-semibold">Brain and Spinal Cord Injury</span>
             </h1>
             <div className="flex items-center lg:absolute lg:right-[25%] lg:translate-x-1/2">
-              <Link href="/" className="cursor-pointer">
+              <Link href="/" prefetch={true} className="cursor-pointer">
                 <Image
                   src="/logo.svg"
                   alt="Tahavacid Logo"

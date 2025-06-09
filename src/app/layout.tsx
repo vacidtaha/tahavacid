@@ -33,6 +33,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
+      <head>
+        {/* Preload kritik resimler - sayfa geçişlerinde hızlı yükleme için */}
+        <link rel="preload" href="/fil.png" as="image" type="image/png" />
+        <link rel="preload" href="/neuron.jpg" as="image" type="image/jpeg" />
+        <link rel="preload" href="/logo.svg" as="image" type="image/svg+xml" />
+        
+        {/* DNS prefetch - external resources için */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
