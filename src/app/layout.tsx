@@ -21,7 +21,8 @@ export const metadata: Metadata = {
 
 // Navbar menü öğeleri
 const navItems = [
-  { name: "R&D", url: "/", icon: "Home" },
+  { name: "Home", url: "/", icon: "Home" },
+  { name: "R&D", url: "/research-development", icon: "FolderOpen" },
   { name: "Contact", url: "/contact", icon: "Mail" },
 ];
 
@@ -36,7 +37,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        <main className="pt-16 pb-24">
+        <main className="pt-16">
           {children}
         </main>
         <NavBar items={navItems} />

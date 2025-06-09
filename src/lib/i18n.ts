@@ -1,12 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Browser-only detection - SSR'da çalıştırma
-let LanguageDetector: any = null;
-if (typeof window !== 'undefined') {
-  LanguageDetector = require('i18next-browser-languagedetector').default;
-}
-
 // Çeviri dosyaları - Sadece Contact Form için
 const resources = {
   en: {
@@ -3638,11 +3632,17 @@ const resources = {
 };
 
 // i18n konfigürasyonu
-const initI18n = () => {
+const initI18n = async () => {
   const i18nInstance = i18n.use(initReactI18next);
   
-  if (LanguageDetector) {
-    i18nInstance.use(LanguageDetector);
+  // Browser'da LanguageDetector'ı dinamik yükle
+  if (typeof window !== 'undefined') {
+    try {
+      const { default: LanguageDetectorModule } = await import('i18next-browser-languagedetector');
+      i18nInstance.use(LanguageDetectorModule);
+    } catch (error) {
+      console.warn('LanguageDetector yüklenemedi:', error);
+    }
   }
   
   return i18nInstance.init({
@@ -3654,7 +3654,7 @@ const initI18n = () => {
       escapeValue: false
     },
     
-    detection: LanguageDetector ? {
+    detection: typeof window !== 'undefined' ? {
       order: ['localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage']
     } : undefined

@@ -151,8 +151,8 @@ function ContactForm() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-white pt-32">
+      <div className="container mx-auto">
         <div className="max-w-3xl mx-auto">
           {/* Language Switcher */}
           <LanguageSwitcher />

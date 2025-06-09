@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import Image from 'next/image';
 
 interface UploadedFile {
   id: string;
@@ -278,9 +279,11 @@ export default function FileUpload({
               {/* File Icon/Preview */}
               <div className="flex-shrink-0">
                 {uploadedFile.preview ? (
-                  <img
+                  <Image
                     src={uploadedFile.preview}
                     alt="preview"
+                    width={48}
+                    height={48}
                     className="w-12 h-12 object-cover rounded"
                   />
                 ) : (
