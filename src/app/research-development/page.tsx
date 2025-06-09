@@ -1,4 +1,5 @@
 import PublicationCard from '@/components/PublicationCard';
+import Image from 'next/image';
 
 export default function ResearchDevelopmentPage() {
   return (
@@ -26,9 +27,11 @@ export default function ResearchDevelopmentPage() {
       <div className="bg-black h-[48rem] sm:h-[52rem] md:h-[56rem] lg:h-[60rem] xl:h-[64rem] w-full -mt-12 sm:-mt-12 md:-mt-14 relative">
         {/* Image Section - Upper Part */}
         <div className="absolute inset-0 flex items-center justify-center pt-0 pb-20 sm:pb-24 md:pb-32">
-          <img 
+          <Image 
             src="/fil.png" 
             alt="Elephant" 
+            width={1024}
+            height={1024}
             className="w-[32rem] h-[32rem] sm:w-[28rem] sm:h-[28rem] md:w-[36rem] md:h-[36rem] lg:w-[48rem] lg:h-[48rem] xl:w-[64rem] xl:h-[64rem] object-contain"
           />
         </div>

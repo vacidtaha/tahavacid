@@ -18,12 +18,30 @@ export default function PublicationCard({
   exploreUrl 
 }: PublicationCardProps) {
   const getThemeClasses = () => {
-    return {
-      container: 'bg-gray-100 text-gray-900',
-      description: 'text-gray-600',
-      link: 'text-gray-700 hover:text-gray-800',
-      button: 'bg-gray-900 text-white hover:bg-gray-800 border-gray-900'
-    };
+    switch (theme) {
+      case 'dark':
+        return {
+          container: 'bg-gray-900 text-white',
+          description: 'text-gray-300',
+          link: 'text-gray-200 hover:text-white',
+          button: 'bg-white text-gray-900 hover:bg-gray-100 border-white'
+        };
+      case 'charcoal':
+        return {
+          container: 'bg-gray-800 text-white',
+          description: 'text-gray-300',
+          link: 'text-gray-200 hover:text-white',
+          button: 'bg-white text-gray-800 hover:bg-gray-100 border-white'
+        };
+      case 'light':
+      default:
+        return {
+          container: 'bg-gray-100 text-gray-900',
+          description: 'text-gray-600',
+          link: 'text-gray-700 hover:text-gray-800',
+          button: 'bg-gray-900 text-white hover:bg-gray-800 border-gray-900'
+        };
+    }
   };
 
   const themeClasses = getThemeClasses();
