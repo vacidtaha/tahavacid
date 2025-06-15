@@ -15,15 +15,26 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="h-screen bg-white flex items-start sm:items-center justify-center overflow-hidden">
+    <div className="h-screen bg-white flex items-center justify-center overflow-hidden">
       {/* Invisible preload links - diğer sayfaları arka planda yükler */}
       <div className="hidden">
         <Link href="/research-development" prefetch={true}>Research</Link>
         <Link href="/neuronal-gene-therapy" prefetch={true}>Neuronal</Link>
-        <Link href="/contact" prefetch={true}>Contact</Link>
+        <Link href="https://contact.tahavacid.com" prefetch={true}>Contact</Link>
       </div>
       
-      <div className="text-left px-4 sm:px-6 md:px-8 lg:-ml-32 max-w-4xl mx-auto pt-44 sm:pt-0">
+      <div className="text-left px-4 sm:px-6 md:px-8 max-w-4xl mx-auto">
+        {/* Şiir başlığı */}
+        <h1 
+          className="text-lg sm:text-xl md:text-2xl text-black font-normal mb-6 sm:mb-8"
+          style={{ 
+            fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif',
+            fontWeight: '400'
+          }}
+        >
+          INVICTUS
+        </h1>
+        
         <div className="space-y-6 sm:space-y-8">
           <div className="space-y-4 sm:space-y-6">
             <p 

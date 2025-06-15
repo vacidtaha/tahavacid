@@ -2,6 +2,9 @@
   "name": "tahavacid",
   "version": "0.1.0",
   "private": true,
+  "description": "Up",
+  "homepage": "https://tahavacid.com",
+  "author": "Taha Vacid",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

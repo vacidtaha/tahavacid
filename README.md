@@ -1,8 +1,13 @@
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**🚀 Taha Vacid Advanced Technology Institute**
+# Taha Vacid
 
----
+**🚀 Up**
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Up
+
+## 🌐 Live Site
+Visit at [tahavacid.com](https://tahavacid.com)
+
+## 🛠 Built with Next.js
 
 ## Getting Started
 

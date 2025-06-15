@@ -15,15 +15,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tahavacid - R&D",
-  description: "Tahavacid comprehensive web project",
+  title: "Taha Vacid",
+  description: "Up",
+  keywords: "Tahavacid, Taha Vacid, Poetry, R&D, Research, Development, Invictus, Personal Website",
+  authors: [{ name: "Taha Vacid" }],
+  creator: "Taha Vacid",
+  metadataBase: new URL('https://tahavacid.com'),
+  openGraph: {
+    title: "Taha Vacid",
+    description: "Up",
+    url: "https://tahavacid.com",
+    siteName: "Taha Vacid",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Taha Vacid",
+    description: "Up",
+    creator: "@tahavacid"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 // Navbar menü öğeleri
 const navItems = [
   { name: "Home", url: "/", icon: "Home" },
   { name: "R&D", url: "/research-development", icon: "FolderOpen" },
-  { name: "Contact", url: "/contact", icon: "Mail" },
+  { name: "Contact", url: "https://contact.tahavacid.com", icon: "Mail" },
 ];
 
 export default function RootLayout({
