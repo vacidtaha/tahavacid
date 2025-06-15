@@ -30,7 +30,7 @@ export default function Header() {
             <Link href="/" className="cursor-pointer">
               <Image
                 src="/logo.svg"
-                alt="Tahavacid Logo"
+                alt="Taha Vacid Logo"
                 width={100}
                 height={20}
                 className="h-5 w-auto max-w-none"
@@ -38,6 +38,7 @@ export default function Header() {
                   objectFit: 'contain',
                   filter: isRDPage ? 'invert(1)' : 'none' // RD sayfasında beyaz logo, diğerlerinde siyah
                 }}
+                priority={true}
               />
             </Link>
           </div>

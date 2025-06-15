@@ -11,13 +11,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 31536000, // 1 year
   },
   
-  // Subdomain support
-  async rewrites() {
-    return [
-      // Subdomain rewrites will be handled by middleware
-      // This is just for additional rewrite rules if needed
-    ]
-  },
+
   
   // Headers for better performance and security
   async headers() {

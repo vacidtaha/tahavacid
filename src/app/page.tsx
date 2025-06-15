@@ -20,7 +20,7 @@ export default function Home() {
       <div className="hidden">
         <Link href="/research-development" prefetch={true}>Research</Link>
         <Link href="/neuronal-gene-therapy" prefetch={true}>Neuronal</Link>
-        <Link href="https://contact.tahavacid.com" prefetch={true}>Contact</Link>
+        <Link href="/contact" prefetch={true}>Contact</Link>
       </div>
       
       <div className="text-left px-4 sm:px-6 md:px-8 max-w-4xl mx-auto">

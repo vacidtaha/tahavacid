@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 const navItems = [
   { name: "Home", url: "/", icon: "Home" },
   { name: "R&D", url: "/research-development", icon: "FolderOpen" },
-  { name: "Contact", url: "https://contact.tahavacid.com", icon: "Mail" },
+  { name: "Contact", url: "/contact", icon: "Mail" },
 ];
 
 export default function RootLayout({
