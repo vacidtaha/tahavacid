@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# video files (large files for VPS)
+/public/videos/*
+!/public/videos/.gitkeep

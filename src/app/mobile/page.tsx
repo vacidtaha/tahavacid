@@ -4,10 +4,48 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { getMovieDetails, getMovieCredits, getMovieImages, getImageUrl, LEGEND_MOVIE_ID } from '@/lib/tmdb';
 
+// TMDB API tipleri
+interface MovieDetails {
+  id: number;
+  title: string;
+  overview: string;
+  release_date: string;
+  runtime: number;
+  genres: Array<{ id: number; name: string }>;
+  poster_path: string;
+}
+
+interface MovieImage {
+  file_path: string;
+  iso_639_1: string | null;
+}
+
+interface MovieImages {
+  posters: MovieImage[];
+}
+
+interface CastMember {
+  id: number;
+  name: string;
+  character: string;
+  profile_path: string | null;
+}
+
+interface CrewMember {
+  id: number;
+  name: string;
+  job: string;
+}
+
+interface MovieCredits {
+  cast: CastMember[];
+  crew: CrewMember[];
+}
+
 export default function MobilePage() {
-  const [movieDetails, setMovieDetails] = useState<any>(null);
-  const [images, setImages] = useState<any>(null);
-  const [credits, setCredits] = useState<any>(null);
+  const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
+  const [images, setImages] = useState<MovieImages | null>(null);
+  const [credits, setCredits] = useState<MovieCredits | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
@@ -29,11 +67,11 @@ export default function MobilePage() {
   }
 
   // En yüksek kaliteli yazısız posteri seç (genellikle ilk poster)
-  const cleanPoster = images.posters.find((poster: any) => !poster.iso_639_1) || images.posters[0];
+  const cleanPoster = images.posters.find((poster: MovieImage) => !poster.iso_639_1) || images.posters[0];
   
   // Yıl, tür ve süre formatla
   const releaseYear = new Date(movieDetails.release_date).getFullYear();
-  const genres = movieDetails.genres.map((genre: any) => genre.name).join(', ');
+  const genres = movieDetails.genres.map((genre: { id: number; name: string }) => genre.name).join(', ');
   const formatRuntime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
@@ -48,13 +86,13 @@ export default function MobilePage() {
   return (
     <div className="min-h-screen bg-black">
       {/* Legend Film Afişi - %50 boyut, köşeden köşeye, alt vinyet */}
-      <div className="relative w-full h-[60vh]">
+      <div className="relative w-full h-[45vh]">
         {cleanPoster && (
           <Image
             src={getImageUrl(cleanPoster.file_path, 'w780')}
             alt="Legend Film Afişi"
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
           />
         )}
@@ -118,7 +156,7 @@ export default function MobilePage() {
           <div className="mt-6 space-y-3">
             {/* Yönetmen */}
             {(() => {
-              const director = credits.crew.find((person: any) => person.job === 'Director');
+              const director = credits.crew.find((person: CrewMember) => person.job === 'Director');
               return director ? (
                 <div className="flex items-start gap-2">
                   <span className="text-white/50 text-xs font-medium min-w-[60px]" 
@@ -140,7 +178,7 @@ export default function MobilePage() {
                 Oyuncular ve Ekip
               </span>
               <div className="flex gap-5 overflow-x-auto pb-2">
-                {credits.cast.slice(0, 8).map((actor: any, index: number) => (
+                {credits.cast.slice(0, 8).map((actor: CastMember, index: number) => (
                   <div key={index} className="flex-shrink-0 text-center space-y-2">
                     <div className="w-20 h-20 relative rounded-full overflow-hidden bg-white/10">
                       {actor.profile_path ? (
