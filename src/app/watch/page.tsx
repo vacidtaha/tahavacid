@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { getMovieDetails, LEGEND_MOVIE_ID, getImageUrl } from '@/lib/tmdb'
-import Image from 'next/image'
 
 export default async function WatchPage() {
   const movieDetails = await getMovieDetails(LEGEND_MOVIE_ID)
