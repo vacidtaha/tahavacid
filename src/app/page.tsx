@@ -1,103 +1,182 @@
-import Image from "next/image";
+import Image from 'next/image';
+import { redirect } from 'next/navigation';
+import { headers } from 'next/headers';
+import { getMovieDetails, getMovieCredits, getMovieImages, getImageUrl, LEGEND_MOVIE_ID } from '@/lib/tmdb';
 
-export default function Home() {
+export default async function Home() {
+  // Mobil cihaz algılama
+  const headersList = await headers();
+  const userAgent = headersList.get('user-agent') || '';
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+  
+  // Mobil cihazdan geliyorsa /mobile sayfasına yönlendir
+  if (isMobile) {
+    redirect('/mobile');
+  }
+
+  // TMDB API'sinden film verilerini çek
+  const movieDetails = await getMovieDetails(LEGEND_MOVIE_ID);
+  const credits = await getMovieCredits(LEGEND_MOVIE_ID);
+  const images = await getMovieImages(LEGEND_MOVIE_ID);
+  
+  // Farklı backdrop ve poster seç (sabit)
+  const selectedBackdrop = images.backdrops[1]?.file_path || movieDetails.backdrop_path;
+  const selectedPoster = images.posters[7]?.file_path || movieDetails.poster_path;
+  
+  // Yönetmeni bul
+  const director = credits.crew.find(person => person.job === 'Director');
+  
+  const formatRuntime = (minutes: number) => {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${hours}s ${mins}dk`;
+  };
+
+  const formatReleaseYear = (date: string) => {
+    return new Date(date).getFullYear();
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Backdrop Image */}
+      <div className="absolute inset-0 z-0">
+        {selectedBackdrop && (
+          <Image
+            src={getImageUrl(selectedBackdrop, 'original')}
+            alt={movieDetails.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        )}
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Romantic Message */}
+      <div className="relative z-10 pt-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-white/90 text-sm md:text-base font-light tracking-wide">
+              <span className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
+                ✨ Sadece Melike için oluşturuldu • Sevgiler Taha 💖
+              </span>
+            </p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Side - Movie Info */}
+            <div className="text-white space-y-8">
+              
+              {/* Title and Year */}
+              <div className="space-y-4">
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+                  {movieDetails.title}
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-300 font-light">
+                  {formatReleaseYear(movieDetails.release_date)}
+                </p>
+              </div>
+
+              {/* Tagline */}
+              {movieDetails.tagline && (
+                <p className="text-2xl md:text-3xl font-light text-gray-200 italic">
+                  {movieDetails.tagline}
+                </p>
+              )}
+
+              {/* Movie Details */}
+              <div className="flex flex-wrap gap-6 text-sm text-gray-300">
+                <span className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
+                  {movieDetails.genres.map(genre => genre.name).join(', ')}
+                </span>
+                <span>{formatRuntime(movieDetails.runtime)}</span>
+                <span>⭐ {movieDetails.vote_average.toFixed(1)}</span>
+              </div>
+
+              {/* Overview */}
+              <p className="text-lg leading-relaxed text-gray-200 max-w-2xl">
+                {movieDetails.overview}
+              </p>
+
+              {/* Director */}
+              {director && (
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
+                    Yönetmen
+                  </h3>
+                  <p className="text-lg text-white">{director.name}</p>
+                </div>
+              )}
+
+              {/* Action Button */}
+              <div className="pt-4">
+                <button className="bg-white text-black px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-300 flex items-center justify-center gap-2">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                  İzlemeye Başla
+                </button>
+              </div>
+            </div>
+
+            {/* Right Side - Poster */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative">
+                <div className="w-80 h-[480px] relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                  {selectedPoster && (
+                    <Image
+                      src={getImageUrl(selectedPoster, 'w500')}
+                      alt={`${movieDetails.title} Poster`}
+                      fill
+                      className="object-cover"
+                    />
+                  )}
+                </div>
+                {/* Glow effect */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Cast Section */}
+          <div className="mt-20 pt-12 border-t border-white/10">
+            <h2 className="text-2xl font-semibold text-white mb-8">Oyuncular</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {credits.cast.slice(0, 6).map((actor, index) => (
+                <div key={index} className="text-center space-y-2">
+                  <div className="w-20 h-20 relative rounded-full mx-auto overflow-hidden bg-white/10">
+                    {actor.profile_path ? (
+                      <Image
+                        src={getImageUrl(actor.profile_path, 'w185')}
+                        alt={actor.name}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-white font-semibold text-lg">
+                          {actor.name.charAt(0)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-white font-medium text-sm">{actor.name}</p>
+                    <p className="text-gray-400 text-xs">{actor.character}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
