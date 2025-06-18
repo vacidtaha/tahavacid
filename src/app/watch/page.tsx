@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getMovieDetails, LEGEND_MOVIE_ID, getImageUrl } from '@/lib/tmdb'
+import HLSVideoPlayer from '@/components/HLSVideoPlayer'
 
 export default async function WatchPage() {
   const movieDetails = await getMovieDetails(LEGEND_MOVIE_ID)
@@ -8,7 +9,7 @@ export default async function WatchPage() {
   const videoUrl = "/videos/movie.mp4" // Veya .m3u8 HLS dosyası
   
   return (
-    <div className="min-h-screen bg-black relative">
+    <div className="min-h-screen bg-black">
       {/* Back Button */}
       <div className="absolute top-4 left-4 z-50">
         <Link 
@@ -22,29 +23,19 @@ export default async function WatchPage() {
         </Link>
       </div>
 
-      {/* Video Container - iOS Native Player */}
+      {/* Custom Video Player */}
       <div className="w-full h-screen flex items-center justify-center">
-        <div className="w-full max-w-7xl mx-auto px-4 text-center">
-          <video
-            controls
-            playsInline
-            preload="metadata"
-            className="w-full aspect-video max-h-[90vh] bg-black rounded-lg mx-auto"
+        <div className="w-full max-w-7xl mx-auto px-4">
+          <HLSVideoPlayer
+            src={videoUrl}
             poster={movieDetails.backdrop_path ? getImageUrl(movieDetails.backdrop_path, 'original') : undefined}
-            crossOrigin="anonymous"
-            style={{
-              objectFit: 'contain',
-              textAlign: 'center'
-            }}
-          >
-            <source src={videoUrl} type="video/mp4" />
-            <source src="/videos/movie.m3u8" type="application/vnd.apple.mpegurl" />
-            Tarayıcınız video oynatmayı desteklemiyor.
-          </video>
+            title={movieDetails.title}
+            className="w-full aspect-video max-h-[90vh]"
+          />
         </div>
       </div>
 
-      {/* Movie Info Overlay */}
+      {/* Movie Info Below Video */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-8 pointer-events-none">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">{movieDetails.title}</h1>
