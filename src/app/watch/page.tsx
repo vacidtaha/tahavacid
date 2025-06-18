@@ -31,6 +31,11 @@ export default async function WatchPage() {
             preload="metadata"
             className="w-full aspect-video max-h-[90vh] bg-black rounded-lg mx-auto"
             poster={movieDetails.backdrop_path ? getImageUrl(movieDetails.backdrop_path, 'original') : undefined}
+            crossOrigin="anonymous"
+            style={{
+              objectFit: 'contain',
+              textAlign: 'center'
+            }}
           >
             <source src={videoUrl} type="video/mp4" />
             <source src="/videos/movie.m3u8" type="application/vnd.apple.mpegurl" />
