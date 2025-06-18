@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { getMovieDetails, getMovieCredits, getMovieImages, getImageUrl, LEGEND_MOVIE_ID } from '@/lib/tmdb';
 
@@ -120,10 +121,10 @@ export default function MobilePage() {
           </div>
           
           {/* İzlemeye Başla Butonu */}
-          <button className="mt-2 bg-white text-black px-16 py-3 rounded-xl font-semibold text-sm hover:bg-gray-100 transition-all duration-300 shadow-lg"
+          <Link href="/watch" className="mt-2 bg-white text-black px-16 py-3 rounded-xl font-semibold text-sm hover:bg-gray-100 transition-all duration-300 shadow-lg inline-flex items-center justify-center"
                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
             İzlemeye Başla
-          </button>
+          </Link>
         </div>
       </div>
       
