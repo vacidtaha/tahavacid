@@ -24,12 +24,12 @@ export default async function WatchPage() {
 
       {/* Video Container - iOS Native Player */}
       <div className="w-full h-screen flex items-center justify-center">
-        <div className="w-full max-w-7xl mx-auto px-4">
+        <div className="w-full max-w-7xl mx-auto px-4 text-center">
           <video
             controls
             playsInline
             preload="metadata"
-            className="w-full aspect-video max-h-[90vh] bg-black rounded-lg"
+            className="w-full aspect-video max-h-[90vh] bg-black rounded-lg mx-auto"
             poster={movieDetails.backdrop_path ? getImageUrl(movieDetails.backdrop_path, 'original') : undefined}
           >
             <source src={videoUrl} type="video/mp4" />
